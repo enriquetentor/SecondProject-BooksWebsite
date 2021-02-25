@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- las dos siguiente lineas me activan funciones de validacion y uso 
+	de anotaciones en spring mvc -->
+	<mvc:annotation-driven/>
+	<context:annotation-config/>
+	
+	<!-- agregamos el archivo de spring hibernate -->
+	<import resource="hibernate-context.xml"/>
+		
+	<!-- esto crea una bean por cada clase dentro de esos paquetes, solo con clases marcadas con @controller o @service o @component-->
+	<context:component-scan base-package="serviciosImpl"/>
+	<context:component-scan base-package="controladores"/>
+	<context:component-scan base-package="controladores.admin"/>
+	<context:component-scan base-package="serviciosWEB"/>
+	
+	<!-- interceptores -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/servicioWebAnuncios/*"/>
+			<bean id="interceptorUsuarioIdentificacion" class="interceptores.LoginUserInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- la siguiente agrega lo indicado a un retuen de un controlador -->
+	<bean id="viewResolver" 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsps/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- la siguiente nos va a ayudar a la subida de archivo -->
+	<bean id="multipartResolver" 
+	 class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- lo siguiente es para que spring mvc no interfiera con ciertas rutas -->
+	<!-- para usar las imagenes -->
+	 <mvc:resources mapping="/subidas/**" location="/subidas/" />
+	 <mvc:resources mapping="/js/**" location="/js/" />
+	 <mvc:resources mapping="/jsExterno/**" location="/jsExterno/" />
+	 <mvc:resources mapping="/plantillas-mustache/**" location="/plantillas-mustache/" />
+	 <mvc:resources mapping="/cssExterno/**" location="/cssExterno/" />
+
+</beans>
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+<div class="card-group marginPercent row row-cols-1 row-cols-xl-5 row-cols-xxl-6 row-cols-2 row-cols-md-3 row-cols-sm-3 row-cols-lg-4 marginLR7">
+{{#.}}
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img src="subidas/{{id}}.jpg" class="imagenCarta card-img-top" alt="{{title}}-{{author}}">
+      <div class="card-body">
+        <h5 class="card-title">{{title}}-{{author}}</h5>
+        <!--<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>  -->
+      </div>
+      <ul class="list-group list-group-flush">
+	    <li class="list-group-item">{{price}}&#8364</li>
+	  </ul>
+	  <div class="card-footer cfCustom">
+	   	<div class="center detailsCF">
+	   	<a href="#data" class="btn btn-outline-info" data-toggle="modal">Detalles</a>
+	   	</div>
+	  </div>
+    </div>
+  </div>
+{{/.}}
+</div>

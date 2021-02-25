@@ -1,0 +1,20 @@
+Introduce los datos de tu anuncio:
+<form id="registerFormData">
+Titulo: <input type="text" name="title" id="title" /><br/>
+Autor: <input type="text" name="author" id="author"/><br/>
+Páginas: <input type="text" name="pages" id="pages"/><br/>
+Precio: <input type="text" name="price" id="price"/><br/>
+Contacto: <input type="text" name="contact" id="contact"/><br/>
+Editorial: <input type="text" name="editorial" id="editorial"/><br/>
+ISBN: <input type="text" name="isbn" id="isbn"/><br/>
+Portada: <input type="file" name="portada" id="portada"/> <br/>
+Categoria: 
+<select name="categoryId" id="categoryId">
+	<option value="0">Elige una categoria</option>
+	{{#.}}
+	<option value="{{id}}">{{name}}</option>
+	{{/.}}
+</select><br>
+
+<input type="submit" value="Registrar libro"/>
+</form>
